@@ -1,0 +1,42 @@
+body {
+    font: 20px Trebuchet MS, sans-serif;
+}
+h1 {
+    text-align: center;
+}
+#container {
+    overflow: auto;
+    max-height: 500px;
+    max-width: 800px;
+    margin: auto;
+}
+#addTaskBtn {
+    bottom: 100px;
+    right: 80px;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: none;
+    background: #3dc400c7;
+    font-size: 20px;
+}
+#taskList {
+    list-style: none;
+}
+#taskList button {
+    border: none;
+    background: none;
+    width: 20px;
+}
+#taskList>li:not(:hover)>button {
+    display: none;
+}
+::-webkit-scrollbar {
+    background: none;
+    width: 15px;
+}
+::-webkit-scrollbar-thumb {
+    border: 1px solid #137255;  
+    border-radius: 4px;
+}
