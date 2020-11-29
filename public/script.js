@@ -5,6 +5,7 @@ fetch('/api/tasks')
 
 
 function buildTask(task) {
+    console.log(task)
     return `
         <li>
             <input type="checkbox" ${task.done ? 'checked': ''}>
