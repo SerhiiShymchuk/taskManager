@@ -43,8 +43,43 @@ http.createServer((request, response) => {
     const path = (url == '/') ? '/index.html' : url
     if (url.startsWith('/api')) {
         if (url == '/api/tasks') {
-            response.setHeader('Content-type', 'application/json')
-            response.end(JSON.stringify(tasks))
+            if (method == 'GET') {
+                response.setHeader('Content-type', 'application/json')
+                response.end(JSON.stringify(tasks))
+            } else if (method == 'POST') {
+
+                {
+                    // const parts = []
+                // request.on('data', (part) => {
+                //     parts.push(part)
+                // })
+                // request.on('end', () => {
+                //     try {
+                //         const task = JSON.parse(Buffer.concat().toString())
+                //         // {text: 'words', done: false}
+                //         task.id = newID()
+                //         tasks.push(task)
+                //         response.end(JSON.stringify(task))
+                //     } catch (error) {
+                //         console.error(error)
+                //         response.end('invalid task object')
+                //     }
+                // })
+                }
+
+                getBody(request, (body) => {
+                    try {
+                        const task = JSON.parse(body)
+                        // {text: 'words', done: false}
+                        task.id = newID()
+                        tasks.push(task)
+                        response.end(JSON.stringify(task))
+                    } catch (error) {
+                        console.error(error)
+                        response.end('invalid task object')
+                    }
+                })
+            }
         }
         //план
         //прийняти запит з фронтенда 
@@ -53,6 +88,16 @@ http.createServer((request, response) => {
     }
 
 }).listen(3000, ()=> {console.log('server is running: http://localhost:3000')})
+
+function getBody(request, callback) {
+    const parts = []
+    request.on('data', (part) => {
+        parts.push(part)
+    })
+    request.on('end', () => {
+        callback(Buffer.concat(parts).toString())
+    })
+}
 
 function giveFile(path, response) {
     fs.readFile('./public' + path, (err, data) => {
@@ -72,3 +117,8 @@ function giveFile(path, response) {
 function newID() {
     return id += 1
 }
+
+
+
+
+

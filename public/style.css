@@ -1,14 +1,23 @@
-body {
+body, input {
     font: 20px Trebuchet MS, sans-serif;
 }
 h1 {
     text-align: center;
+}
+.Invalid {
+    outline-color: red;
 }
 #container {
     overflow: auto;
     max-height: 500px;
     max-width: 800px;
     margin: auto;
+}
+dialog {
+    padding: 0;
+    border: 0;
+    bottom: 116px;
+
 }
 #addTaskBtn {
     bottom: 100px;
